@@ -1,0 +1,71 @@
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.AppNavbar {
+  background-color: #282c34;
+  min-height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.AppBody {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  background-color: aliceblue;
+}
+  .Appsidenav {
+    width: 20%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center; 
+    font-size: calc(10px + 2vmin);
+    text-size-adjust: 10px;
+    background-color: #cbcbcb;
+  }
+  .product{
+    width: 70%;
+    background-color: #2b2f37;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+  }
+
+/* Style for the navbar */
+.navbar {
+  background-color: #333; /* Background color for the navbar */
+  color: #fff; /* Text color */
+  padding: 10px; /* Add some padding for better appearance */
+  display: flex; /* Use flexbox to control layout */
+  justify-content: flex-start; /* Space items evenly along the main axis */
+  align-items: center; /* Center items vertically within the navbar */
+}
+
+/* Style for the searchbox */
+.search-box {
+  margin-left: 20px; /* Push the searchbox to the start of the navbar */
+}
+
+/* Style for the E-cart and Cart */
+.ecart, .cart {
+   margin-left: 20px; /* Push both items to the end of the navbar */
+  cursor: pointer; /* Add a pointer cursor for better user experience */
+}
+
+/* You can add more styles based on your design preferences */
