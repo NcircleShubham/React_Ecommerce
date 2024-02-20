@@ -23,7 +23,7 @@ const Sidenav = ({ ClearSort, filterdata, setSortOrder }) => {
           <p>price: high to low</p>
         </div>
       </div>
-      <button style={{width: "180px",height:"30px",backgroundColor:" #333",borderRadius: "10px"}} onClick={() => ClearSort()}>Clear</button>
+      <button style={{width: "100%", height: "4vh",backgroundColor:" #333",borderRadius: "10px"}} onClick={() => ClearSort()}>Clear</button>
     </div>
   );
 };

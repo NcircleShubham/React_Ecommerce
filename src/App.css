@@ -1,3 +1,10 @@
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
 
 .App {
   text-align: center;
@@ -9,6 +16,9 @@
 }
 
 .AppNavbar {
+  position: fixed;
+  top: 0px;
+  width: 100%;
   background-color: #282c34;
   min-height: 10vh;
   display: flex;
@@ -16,45 +26,67 @@
   justify-content: flex-start;
   font-size: calc(10px + 2vmin);
   color: white;
+  z-index: 1000; /* Ensure the navbar is above other content */
 }
+
 .AppBody {
+  margin-top: 5vh;
+  margin-left: 15%;
   min-height: 100vh;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
   font-size: calc(10px + 2vmin);
   background-color: aliceblue;
 }
-  .Appsidenav {
-    width: 20%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center; 
-    font-size: calc(10px + 2vmin);
-    text-size-adjust: 10px;
-    background-color: #cbcbcb;
-  }
-  .product{
-    width: 70%;
-    background-color: #2b2f37;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-  }
+.sidenav{
+     margin-top: 10vh;
+     padding: 10px;
+}
+.AppProduct{
+  margin-top: 10vh;
+}
+/* Default styles for the sidebar */
+.Appsidenav {
+  position: fixed;
+  left: 0px;
+  width: 15%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: calc(10px + 2vmin);
+  text-size-adjust: 10px;
+  background-color: #cbcbcb;
+}
 
 /* Style for the navbar */
 .navbar {
-  background-color: #333; /* Background color for the navbar */
-  color: #fff; /* Text color */
-  padding: 10px; /* Add some padding for better appearance */
-  display: flex; /* Use flexbox to control layout */
-  justify-content: flex-start; /* Space items evenly along the main axis */
-  align-items: center; /* Center items vertically within the navbar */
+  background-color: #333;
+  color: #fff;
+  padding: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+  .Appsidenav {
+    width: 100%; /* Change the width to 100% for smaller screens */
+  }
+}
+@media (max-width: 340px) {
+  .Appsidenav {
+    display: none; /* Hide the navbar for screens with a resolution of 320px or less */
+  }
+}
+.product {
+  width: 70%;
+  background-color: #2b2f37;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
 }
 
 /* Style for the searchbox */
@@ -68,4 +100,3 @@
   cursor: pointer; /* Add a pointer cursor for better user experience */
 }
 
-/* You can add more styles based on your design preferences */

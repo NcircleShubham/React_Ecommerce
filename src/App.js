@@ -1,17 +1,20 @@
-import logo from "./logo.svg";
-import "./App.css";
-
+import React from "react";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ECartPage from './Ecart/Ecart'; // Create this component for the E-cart page
 import ProductDisplay from "./Product/Product";
-import Navbar from "./Navbar/Navbar";
-import Sidenav from "./Sidenav/Sidenav";
-// or, if desiring a different locale
-// import { fakerDE as faker } from '@faker-js/faker';
-
+import { ProductProvider } from './productContext';
 function App() {
   return (
-    <div className="App">
-      <ProductDisplay productCount={10} />
-    </div>
+    <ProductProvider>
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route exact path="/" element={ <ProductDisplay productCount={10} />} />
+          <Route path="/ecart" element={<ECartPage />} />
+        </Routes>
+      </div>
+    </Router>
+    </ProductProvider>
   );
 }
 
