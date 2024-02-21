@@ -58,6 +58,7 @@ const ProductDisplay = ({ productCount }) => {
 
   const ClearSort = () => {
     updateProducts([...generateFakeProducts(productCount)]);
+    setSortOrder("")
   };
 
   return (
