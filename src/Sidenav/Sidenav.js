@@ -1,12 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 
 const Sidenav = ({ ClearSort, filterdata, setSortOrder }) => {
+    const [isChecked, setIsChecked] = useState(true);
+
+  const Setfilterdata = () => {
+     setIsChecked(!isChecked)
+    if (isChecked) {
+     filterdata()
+    } else {
+      // Handle clearing or using previous data when checkbox is unchecked
+      ClearSort()
+    }
+  };
+
   return (
     <div className="sidenav">
       <div>
         <h1 style={{fontSize:"18px"}}>Filters</h1>
         <div style={{ display: "flex",alignItems:"center",justifyContent:"space-between",fontSize:"15px"}}>
-          <input type="checkbox" onChange={filterdata} />
+          <input type="checkbox"  onChange={Setfilterdata} />
           <p>Fast Delivery only</p>
         </div>
       </div>

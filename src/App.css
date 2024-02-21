@@ -78,6 +78,11 @@ body {
     display: none; /* Hide the navbar for screens with a resolution of 320px or less */
   }
 }
+@media (min-width: 375px) and (max-width: 1440px) {
+  .Appsidenav {
+    width: 20%; /* Hide the navbar for screens with a resolution of 320px or less */
+  }
+}
 .product {
   width: 70%;
   background-color: #2b2f37;
@@ -96,7 +101,7 @@ body {
 
 /* Style for the E-cart and Cart */
 .ecart, .cart {
-   margin-left: 20px; /* Push both items to the end of the navbar */
+   margin-left: 11px; /* Push both items to the end of the navbar */
   cursor: pointer; /* Add a pointer cursor for better user experience */
 }
 

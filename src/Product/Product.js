@@ -17,7 +17,7 @@ function generateFakeProducts(count) {
 
 const ProductDisplay = ({ productCount }) => {
     const { products, updateProducts ,searchQuery} = useProductContext();
-  const [sortOrder, setSortOrder] = useState("asc");
+  const [sortOrder, setSortOrder] = useState("");
   useEffect(() => {
     if(searchQuery === '') {
       updateProducts(generateFakeProducts(productCount));
@@ -36,12 +36,19 @@ const ProductDisplay = ({ productCount }) => {
      }, [productCount]);
   
     useEffect(() => {
-      if (sortOrder === "desc") {
-        const sortedProducts = [...products].sort((a, b) => b.price - a.price);
-        updateProducts(sortedProducts);
-      } else {
-        updateProducts(generateFakeProducts(productCount));
-      }
+  const newProducts = generateFakeProducts(productCount);
+
+  // Apply sorting based on the current sortOrder
+  if (sortOrder === "desc") {
+    const sortedProducts = [...newProducts].sort((a, b) => b.price - a.price);
+    updateProducts(sortedProducts);
+  } else if (sortOrder === "asc") {
+    const sortedProductsAsc = [...newProducts].sort((a, b) => a.price - b.price);
+    updateProducts(sortedProductsAsc);
+  } else {
+    // If sortOrder is not set, just update with the new products without sorting
+    updateProducts(newProducts);
+  }
     }, [sortOrder]);
 
   const filterdata = () => {
