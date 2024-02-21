@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 
 const Sidenav = ({ ClearSort, filterdata, setSortOrder }) => {
-    const [isChecked, setIsChecked] = useState(true);
- const [isShortasc, setIsShortasc] = useState(true);
- const [isShortdesc, setIsShortdesc] = useState(true);
+    const [isChecked, setIsChecked] = useState(false);
+ const [isShortasc, setIsShortasc] = useState(false);
+ const [isShortdesc, setIsShortdesc] = useState(false);
   const Setfilterdata = () => {
      setIsChecked(!isChecked)
-    if (isChecked) {
+    if (!isChecked) {
      filterdata()
     } else {
       // Handle clearing or using previous data when checkbox is unchecked
@@ -15,7 +15,7 @@ const Sidenav = ({ ClearSort, filterdata, setSortOrder }) => {
   };
   const handleClick = () => {
     setIsShortasc(!isShortasc)
-      if (isShortasc) {
+      if (!isShortasc) {
       setSortOrder("asc");
     } else {
       ClearSort();
@@ -23,7 +23,7 @@ const Sidenav = ({ ClearSort, filterdata, setSortOrder }) => {
 }
   const handleClickdesc = () => {
     setIsShortdesc(!isShortdesc)
-      if (isShortdesc) {
+      if (!isShortdesc) {
       setSortOrder("desc");                 
     } else {
       ClearSort();
@@ -31,9 +31,9 @@ const Sidenav = ({ ClearSort, filterdata, setSortOrder }) => {
 }
 const ClearData = () => {
   ClearSort()
-  handleClick()
-  handleClickdesc()
-  Setfilterdata()
+   setIsShortasc(false)
+   setIsShortdesc(false)
+  setIsChecked(false)
 }
   return (
     <div className="sidenav">
