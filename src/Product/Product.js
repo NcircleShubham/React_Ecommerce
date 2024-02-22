@@ -3,8 +3,14 @@ import { faker } from "@faker-js/faker";
 import Sidenav from "../Sidenav/Sidenav";
 import "../App.css";
 import Navbar from "../Navbar/Navbar";
-import { useProductContext } from '../productContext';
-
+import { updateProducts, setSearchQuery, setSortOrder } from "../Productslice/ProductSlice";
+import { useDispatch, useSelector } from "react-redux";
+/**
+ * Generates an array of fake products with the specified count.
+ *
+ * @param {number} count - The number of fake products to generate
+ * @return {Array} An array of fake products
+ */
 function generateFakeProducts(count) {
   return Array.from({ length: count }, (_, index) => ({
     id: index + 1,
@@ -14,51 +20,64 @@ function generateFakeProducts(count) {
     selected: false, // Added selected state
   }));
 }
-
+/**
+ * Renders the ProductDisplay component with the given products and search functionality.
+ *
+ * @param {object} productCount - The number of products to be displayed
+ * @return {JSX.Element} The rendered ProductDisplay component
+ */
 const ProductDisplay = ({ productCount }) => {
-    const { products, updateProducts ,searchQuery} = useProductContext();
+    const dispatch = useDispatch();
+  const products = useSelector((state) => state.products.data);
+  const searchQuery = useSelector((state) => state.products.searchQuery);
   const [sortOrder, setSortOrder] = useState("");
   useEffect(() => {
-    if(searchQuery === '') {
-      updateProducts(generateFakeProducts(productCount));
+    if (searchQuery === "") {
+      dispatch(updateProducts(generateFakeProducts(productCount)));
       return;
     }
     const filteredProducts = products.filter((product) =>
       product.type.toLowerCase().includes(searchQuery.toLowerCase())
     );
-    updateProducts(filteredProducts);
+        dispatch(updateProducts(filteredProducts));
   }, [searchQuery]);
 
-     useEffect(() => {
+  useEffect(() => {
     // Assuming generateFakeProducts is a function that generates fake products
-       const newProducts = generateFakeProducts(productCount);
-       updateProducts(newProducts);
-     }, [productCount]);
-  
-    useEffect(() => {
-  const newProducts = generateFakeProducts(productCount);
+    const newProducts = generateFakeProducts(productCount);
+    dispatch(updateProducts(newProducts));
+  }, [productCount]);
 
-  // Apply sorting based on the current sortOrder
-  if (sortOrder === "desc") {
-    const sortedProducts = [...newProducts].sort((a, b) => b.price - a.price);
-    updateProducts(sortedProducts);
-  } else if (sortOrder === "asc") {
-    const sortedProductsAsc = [...newProducts].sort((a, b) => a.price - b.price);
-    updateProducts(sortedProductsAsc);
-  } else {
-    // If sortOrder is not set, just update with the new products without sorting
-    updateProducts(newProducts);
-  }
-    }, [sortOrder]);
+  useEffect(() => {
+    const newProducts = generateFakeProducts(productCount);
 
+    // Apply sorting based on the current sortOrder
+    if (sortOrder === "desc") {
+      const sortedProducts = [...newProducts].sort((a, b) => b.price - a.price);
+      dispatch(updateProducts(sortedProducts));
+    } else if (sortOrder === "asc") {
+      const sortedProductsAsc = [...newProducts].sort(
+        (a, b) => a.price - b.price
+      );
+      dispatch(updateProducts(sortedProductsAsc));
+    } else {
+      // If sortOrder is not set, just update with the new products without sorting
+      dispatch(updateProducts(newProducts));
+    }
+  }, [sortOrder]);
+  /**
+   * This function filters the data and updates the products.
+   */
   const filterdata = () => {
     const filteredProducts = products.filter((product) => product.price > 403);
-    updateProducts(filteredProducts);
+    dispatch(updateProducts(filteredProducts));
   };
-
+  /**
+   * A function that clears the products and sets the sort order to an empty string.
+   */
   const ClearSort = () => {
-    updateProducts([...generateFakeProducts(productCount)]);
-    setSortOrder("")
+    dispatch(updateProducts([...generateFakeProducts(productCount)]));
+    setSortOrder("");
   };
 
   return (
@@ -75,7 +94,6 @@ const ProductDisplay = ({ productCount }) => {
           ></Sidenav>
         </div>
         <div className="AppProduct">
-          
           <div
             style={{
               display: "flex",
@@ -117,7 +135,7 @@ const ProductDisplay = ({ productCount }) => {
                       }
                       return p;
                     });
-                    updateProducts(updatedProducts);
+                    dispatch(updateProducts(updatedProducts));
                   }}
                 >
                   {product.selected ? "Remove from cart" : "Add to cart"}

@@ -1,9 +1,9 @@
 // Ecart.js
 import React from 'react';
-import { useProductContext } from '../productContext';
+import { useSelector } from 'react-redux';
 
 const Ecart = () => {
-    const { products } = useProductContext();
+  const products = useSelector((state) => state.products.data);
   return (
     <div >
       <h2>Cart List</h2>
