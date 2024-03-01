@@ -105,7 +105,7 @@ const ProductDisplay = ({ productCount }) => {
               <div
                 style={{
                   width: "250px",
-                  height: "350px",
+                  height: "380px",
                   margin: "30px",
                   backgroundColor: "#c4c6c9",
                   textAlign: "center",
@@ -115,7 +115,7 @@ const ProductDisplay = ({ productCount }) => {
                 key={index}
               >
                 <img
-                  style={{ width: "200px", height: "200px" }}
+                  style={{ width: "200px", height: "200px" , marginTop:"10px",borderRadius:"10px"}}
                   src={product.image}
                   alt={`Product ${index + 1}`}
                 />

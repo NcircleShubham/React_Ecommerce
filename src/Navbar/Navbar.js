@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import { useProductContext } from "../productContext";
+import { useDispatch, useSelector } from 'react-redux';
+import { setSearchQuery, updateSearchQuery } from "../Productslice/ProductSlice";
 
-const Navbar = ({ products }) => {
-  const { updateSearchQuery } = useProductContext();
-  const [searchQuery, setSearchQuery] = useState('');
+const Navbar = () => {
+  const dispatch = useDispatch();
+  const searchQuery = useSelector((state) => state.products.searchQuery);
+  const products = useSelector((state) => state.products.data);
 
   const handleSearchInputChange = (event) => {
     const query = event.target.value;
-    setSearchQuery(query);
-    updateSearchQuery(query);
+    dispatch(setSearchQuery(query));
+    dispatch(updateSearchQuery(query));
   };
 
   let count = products

@@ -13,9 +13,12 @@ const productsSlice = createSlice({
     },
     setSortOrder: (state, action) => {
       state.sortOrder = action.payload;
-    },
+      },
+    updateSearchQuery: (state, action) => {
+      state.searchQuery = action.payload;
+    }
   },
 });
 
-export const { updateProducts, setSearchQuery, setSortOrder } = productsSlice.actions;
+export const { updateProducts, setSearchQuery, setSortOrder,updateSearchQuery } = productsSlice.actions;
 export default productsSlice.reducer;
